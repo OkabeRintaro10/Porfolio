@@ -100,7 +100,7 @@ st.header('List of all Bus Stops with their Longitude and Latitude')
 #Busstop_df = pd.DataFrame(total_busstops)
 #df.to_csv("../Xelp/Dataset/Busstop.csv") """
 
-BusStops = get_data("../Dataset/Busstop.csv")
+BusStops = get_data("Dataset/Busstop.csv")
 buffer = io.StringIO()
 BusStops.info(buf=buffer)
 s = buffer.getvalue()
