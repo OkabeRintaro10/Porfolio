@@ -20,14 +20,14 @@ def get_data(filename):
     return data
 
 
-df = get_data(filename="../Xelp/Dataset/020230701APSRTC_BOOKED_TICKETS.csv")
-st.write(df.head())
-st.header("Information on Data")
-st.write(df.describe())
+#df = get_data(filename="../Xelp/Dataset/020230701APSRTC_BOOKED_TICKETS.csv")
+#st.write(df.head())
+#st.header("Information on Data")
+#st.write(df.describe())
 
 
-st.header("Updated Data")
-df = df[
+#st.header("Updated Data")
+"""df = df[
     [
         "Date of Journey",
         "Traveled From",
@@ -98,9 +98,9 @@ def get_stop_long_lat(city_symb, assistance_text=None):
 st.header('List of all Bus Stops with their Longitude and Latitude')
 
 #Busstop_df = pd.DataFrame(total_busstops)
-#df.to_csv("../Xelp/Dataset/Busstop.csv")
+#df.to_csv("../Xelp/Dataset/Busstop.csv") """
 
-BusStops = get_data("../Xelp/Dataset/Busstop.csv")
+BusStops = get_data("../Dataset/Busstop.csv")
 buffer = io.StringIO()
 BusStops.info(buf=buffer)
 s = buffer.getvalue()
