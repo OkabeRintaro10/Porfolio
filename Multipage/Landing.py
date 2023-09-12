@@ -8,10 +8,9 @@ st.title("Main Page")
 st.sidebar.success("Select Page from above")
 
 st.title('Counter Example')
-if 'count' not in st.session_state:
-    st.session_state.count = 0
 increment = st.button('Increment')
+count = 0
 if increment:
-    st.session_state.count += 1
+    count += 1
 
-st.write('count = ', st.session_state.count)
+st.write('count = ', count)
