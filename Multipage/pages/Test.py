@@ -11,15 +11,35 @@ import io
 import warnings
 
 warnings.filterwarnings("ignore")
-
-st.title("Number of Bus Stops in Vijayawada")
-
-
 @st.cache_data
 def get_data(filename):
     data = pd.read_csv(filename, on_bad_lines="skip", verbose=False)
     return data
+st.title("Bus Stops")
+st.subheader("Total bus stops")
+df = get_data("Dataset/020230701APSRTC_BOOKED_TICKETS.csv")
+st.write(df.head())
+buffer = io.StringIO()
+df.info(buf=buffer)
+s = buffer.getvalue()
 
+st.text(s)
+
+st.subheader("Relevant info")
+
+df = df[['Date of Journey', 'Traveled From', 'Traveled To', 'Route Description',
+        'DepotName', 'ServiceStartDate', 'ServiceStartTime', 'BookedDate', 'RegionName',
+        'DepartureTime', 'OriginCityName', 'DestinationCity',
+        'Created Date Time', 'Arrival Time']]
+
+st.write(df.head())
+buffer = io.StringIO()
+df.info(buf=buffer)
+s = buffer.getvalue()
+
+st.text(s)
+
+st.subheader("Bus stops in AP")
 BusStops = get_data("Dataset/Busstop.csv")
 buffer = io.StringIO()
 BusStops.info(buf=buffer)
@@ -28,4 +48,3 @@ s = buffer.getvalue()
 st.text(s)
 
 st.map(BusStops, latitude = 'lat', longitude = 'log')
-st.write('count = ', st.session_state.count)
