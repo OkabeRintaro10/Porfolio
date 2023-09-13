@@ -20,7 +20,7 @@ def get_data(filename):
     data = pd.read_csv(filename, on_bad_lines="skip", verbose=False)
     return data
 
-BusStops = get_data("../Dataset/Busstop.csv")
+BusStops = get_data("Dataset/Busstop.csv")
 buffer = io.StringIO()
 BusStops.info(buf=buffer)
 s = buffer.getvalue()
