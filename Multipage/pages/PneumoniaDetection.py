@@ -41,11 +41,11 @@ def prediction_cls(prediction):
 with st.sidebar:
     # st.image("mg.png")
     st.title("Disease Detection")
-    st.subheader(
+    st.markdown(
         "Accurate detection of diseases present in the X-Ray. This helps an user to easily detect the disease and identify it's cause."
     )
 
-file = st.file_uploader("", type=["jpg", "png"])
+file = st.file_uploader(" ", type=["jpg", "png"])
 
 
 def import_and_predict(image_data, model):
