@@ -60,9 +60,9 @@ def import_and_predict(image_data, model):
 if file is None:
     st.text("Please upload an image file")
 else:
-    model = load_model()
     image = keras.preprocessing.image.load_img(file, target_size=(224, 224))
     st.image(image, caption="Uploaded Image.", use_column_width=True)
+    model = load_model()
     predictions = import_and_predict(image, model)
     x = random.randint(98, 99) + random.randint(0, 99) * 0.01
     st.error("Accuracy : " + str(x) + " %")
