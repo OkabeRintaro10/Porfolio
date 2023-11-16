@@ -11,7 +11,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-# @st.cache_resource()
+@st.cache_resource()
 def load_model():
     model = tf.keras.models.load_model("Models/MedicalClassification_ResNet50V2")
     return model
