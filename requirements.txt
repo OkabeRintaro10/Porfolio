@@ -2,7 +2,7 @@ tensorflow
 pillow
 numpy
 keras
-matplolib
+matplotlib
 time
 os
 io
