@@ -10,13 +10,6 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-
-@st.cache_resource()
-def load_model():
-    model = tf.keras.models.load_model("Models/MedicalClassification_ResNet50V2")
-    return model
-
-
 st.set_page_config(
     page_title="PNEUMONIA Disease Detection",
     page_icon=":skull:",
@@ -44,6 +37,17 @@ with st.sidebar:
     st.markdown(
         "Accurate detection of diseases present in the X-Ray. This helps an user to easily detect the disease and identify it's cause."
     )
+st.set_option("deprecation.showfileUploaderEncoding", False)
+
+
+@st.cache_resource()
+def load_model():
+    model = tf.keras.models.load_model("Models/MedicalClassification_ResNet50V2")
+    return model
+
+
+with st.spinner("Model is being loaded.."):
+    model = load_model()
 
 file = st.file_uploader(" ", type=["jpg", "png"])
 
@@ -62,7 +66,6 @@ if file is None:
 else:
     image = keras.preprocessing.image.load_img(file, target_size=(224, 224))
     st.image(image, caption="Uploaded Image.", use_column_width=True)
-    model = load_model()
     predictions = import_and_predict(image, model)
     x = random.randint(98, 99) + random.randint(0, 99) * 0.01
     st.error("Accuracy : " + str(x) + " %")
@@ -79,4 +82,3 @@ else:
 
     elif class_names[np.argmax(predictions)] == "PNEUMONIA":
         st.warning(string)
-st.set_option("deprecation.showfileUploaderEncoding", False)
