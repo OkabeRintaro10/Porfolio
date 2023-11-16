@@ -163,3 +163,4 @@ cython_debug/
 Dataset/
 #Models/MedicalClassification_ResNet50V2/variables/variables.data-00000-of-00001
 .DS_Store
+environment.yml
