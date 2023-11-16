@@ -3,6 +3,3 @@ pillow
 numpy
 keras
 matplotlib
-time
-os
-io
