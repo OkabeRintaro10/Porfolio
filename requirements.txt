@@ -3,3 +3,5 @@ pillow
 numpy
 keras
 matplotlib
+deepface
+os
