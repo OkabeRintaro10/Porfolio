@@ -58,7 +58,7 @@ def recognition(img):
     print("Starting recognition")
     dfs = DeepFace.find(
         img_path=img,
-        db_path="/Users/futuregadgetlab/Desktop/DB",
+        db_path=st.secrets['db_path'],
         detector_backend="mtcnn",
         model_name="VGG-Face",
         distance_metric="euclidean_l2",
