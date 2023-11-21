@@ -1,8 +1,10 @@
 from deepface import DeepFace
 import cv2
 import time
+import streamlit as st
 
-
+windowsHolder = st.empty()
+value = st.empty()
 def main():
     cap = cv2.VideoCapture(0)
     while True:
@@ -12,7 +14,8 @@ def main():
         if img is None:
             break
 
-        cv2.imshow("Window", img)
+        #cv2.imshow("Window", img)
+        windowsHolder.image(img,channels="BGR")
         extract_faces(img)
         if cv2.waitKey(1) & 0xFF == ord("q"):
             break
@@ -22,7 +25,8 @@ def main():
     return
 
 def extract_faces(raw_img):
-    test = DeepFace.extract_faces(raw_img, detector_backend="mtcnn")
+    print("Starting recognition")
+    test = DeepFace.extract_faces(raw_img, detector_backend="mtcnn",align=True)
 
     if test:
         faces = []
@@ -52,16 +56,29 @@ def recognition(img):
         detector_backend="mtcnn",
         model_name="Facenet512",
         distance_metric="euclidean_l2",
+        enforce_detection=False,
+        silent=True
     )
-    for df in dfs:
-        print(df)
-        for _, row in df.iterrows():
-            if row["Facenet512_euclidean_l2"] < 0.6:
-                print("Matched!")
-                break
-            else:
-                print("You don't exist, my friend!")
-                break
 
+    found_non_empty_df = False
+
+    for df in dfs:
+        if len(df) != 0:
+            for _, row in df.iterrows():
+                if row["Facenet512_euclidean_l2"] < 0.6:
+                    print("Matched!")
+                    with value.container():
+                        st.write("Matched! Welcome to expo 2023")
+                    st.balloons()
+                    found_non_empty_df = True
+                    break
+
+            if found_non_empty_df:
+                break  # Exit the outer loop if a match is found in any DataFrame
+        time.sleep(5)
+
+    if not found_non_empty_df:
+        with value.container():
+            st.warning("You don't exist, my friend!")
 if __name__ == "__main__":
     main()
