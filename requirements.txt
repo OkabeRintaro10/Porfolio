@@ -4,4 +4,4 @@ numpy
 keras
 matplotlib
 deepface
-os
+opencv-python
